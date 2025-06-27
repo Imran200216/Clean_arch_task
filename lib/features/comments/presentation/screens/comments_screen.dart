@@ -35,7 +35,6 @@ class _CommentsScreenState extends State<CommentsScreen> {
                         (context, index) {
                           final comment = provider.comments[index];
                           return CommentsListTile(
-              
                             body: comment.body ?? '',
                           );
                         },
