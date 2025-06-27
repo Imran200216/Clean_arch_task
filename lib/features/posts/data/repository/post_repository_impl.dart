@@ -10,8 +10,8 @@ class PostRepositoryImpl implements PostRepository {
   PostRepositoryImpl({required this.postDataSource});
 
   @override
-  Future<PostEntity> addPost(String postTitle, String postDescription) {
-    return postDataSource.addPost(postTitle, postDescription);
+  Future<PostEntity> addPost(String postTitle, String postDescription, postId) {
+    return postDataSource.addPost(postTitle, postDescription, postId);
   }
 
   @override

@@ -2,7 +2,7 @@ import 'package:post_clean_arch/features/posts/domain/entities/post_entity.dart'
 
 abstract class PostRepository {
   // Add post
-  Future<PostEntity> addPost(String postTitle, String postDescription);
+  Future<PostEntity> addPost(String postTitle, String postDescription, String postId);
 
   // Read post
   Future<List<PostEntity>> readPost();

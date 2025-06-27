@@ -2,21 +2,29 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:post_clean_arch/features/posts/data/models/post_model.dart';
 
-
 @LazySingleton()
 class FirestorePostDataSource {
   // Collection name
   final CollectionReference collectionReference = FirebaseFirestore.instance
       .collection("posts");
 
-  Future<PostModel> addPost(String postTitle, String postDescription) async {
+  Future<PostModel> addPost(
+    String postTitle,
+    String postDescription,
+    postId,
+  ) async {
     final docRef = await collectionReference.add({
+      "postId": postId,
       "postTitle": postTitle,
       "postDescription": postDescription,
       "createdAt": FieldValue.serverTimestamp(),
     });
 
-    return PostModel(postTitle: postTitle, postDescription: postDescription);
+    return PostModel(
+      postTitle: postTitle,
+      postDescription: postDescription,
+      postId: postId,
+    );
   }
 
   // Read posts
@@ -37,9 +45,14 @@ class FirestorePostDataSource {
     await collectionReference.doc(postId).update({
       "postTitle": title,
       "postDescription": description,
+      "postId": postId,
     });
 
-    return PostModel(postTitle: title, postDescription: description);
+    return PostModel(
+      postTitle: title,
+      postDescription: description,
+      postId: postId,
+    );
   }
 
   // Delete Post

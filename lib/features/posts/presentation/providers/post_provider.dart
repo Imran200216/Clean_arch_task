@@ -47,12 +47,12 @@ class PostProvider extends ChangeNotifier {
   }
 
   // ➕ Add post
-  Future<void> addPost(String title, String description) async {
+  Future<void> addPost(String title, String description, postId) async {
     _isLoading = true;
     notifyListeners();
 
     try {
-      await addPostUseCase(title, description);
+      await addPostUseCase(title, description, postId);
       await fetchPosts(); // refresh
     } catch (e) {
       _error = e.toString();
